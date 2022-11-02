@@ -1,0 +1,26 @@
+public class Main {
+    public static void main(String[] args) {
+        int A[][]=new int[][]{{2, 4, 5}, {1, 3, 6}, {2, 4, 7}};
+        int B[]=findTheRange(5,A);
+
+        System.out.println(B[0]+" "+B[1]+" "+B[2]);
+    }
+    public static int[] findTheRange(int N, int A[][]){
+        int B[]=new int[N];
+        int Q=A.length,max=Integer.MIN_VALUE,r1=-1,r2=0;
+        //System.out.println(Q);
+        for(int i=0;i<Q;i++){
+            for(int j=A[i][0];j<A[i][1];j++){
+                B[j]+=A[i][2];
+                max=Math.max(max,B[j]);
+            }
+        }
+        for(int i=0;i<N;i++){
+            if(max==B[i]){
+                if(r1==-1) r1=i;
+                r2+=1;
+            }
+        }
+        return new int[]{r1,r2+r1,max};
+    }
+}
